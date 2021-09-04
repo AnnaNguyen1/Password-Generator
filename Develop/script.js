@@ -86,6 +86,8 @@ var upperCasedCharacters = [
   'Z',
 ];
 
+
+
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
@@ -105,20 +107,24 @@ generateBtn.addEventListener("click", writePassword);
 // Prompt user to input a number between 8 - 128
 var generatePassword = function() {
   var characterOption = prompt("Between 8 to 128, how many characters do you want your password to be?");
-  if (!characterOption) {  // User leaves field blank
+  if (!characterOption) {  // User leaves field blank, display alert and run function again
     alert("This field cannot be blank");
+    generatePassword();
   } else if (characterOption < 8 || characterOption > 128) {  //User enters number outside of range
-    characterOption = prompt("Your value needs to be between 8 and 128");
-  } else // Use if statement to determine which arrays to use in the password
-      specialCharacters = confirm("Click OK to include special characters.");
-      numbers = confirm("Click OK to include numbers.");
-      lowerCase = confirm("Click OK to include lowercase letters.");
-      upperCase = confirm("Click OK to include uppercase letters.");
+    characterOption = alert("Your value needs to be between 8 and 128!");
+    generatePassword();
+  } else if (characterOption === null) {
+      return; // Exit out of the function
+  } else {     // Display and save prompt responses
+      var specialCharacters = confirm("Click OK to include special characters.");
+      var numbers = confirm("Click OK to include numbers.");
+      var lowerCase = confirm("Click OK to include lowercase letters.");
+      var upperCase = confirm("Click OK to include uppercase letters.");
+  };
 
+// Assign variables as an object? 
+};
 
-
-
-// Assign variables using arrays 
 
 
 
