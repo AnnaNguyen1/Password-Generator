@@ -86,6 +86,12 @@ var upperCasedCharacters = [
   'Z',
 ];
 
+var criteria = {
+  specialCharacters = true,
+  numbers = true,
+  lowerCase = true,
+  upperCase = true,
+}
 
 
 // Assignment Code
@@ -107,7 +113,7 @@ generateBtn.addEventListener("click", writePassword);
 // Prompt user to input a number between 8 - 128
 var generatePassword = function() {
   var characterOption = prompt("Between 8 to 128, how many characters do you want your password to be?");
-  if (!characterOption) {  // User leaves field blank, display alert and run function again
+  if (characterOption === "") {  // User leaves field blank, display alert and run function again
     alert("This field cannot be blank");
     generatePassword();
   } else if (characterOption < 8 || characterOption > 128) {  //User enters number outside of range
@@ -122,7 +128,18 @@ var generatePassword = function() {
       var upperCase = confirm("Click OK to include uppercase letters.");
   };
 
-// Assign variables as an object? 
+  // No criteria was chosen, display message and exit
+  if (!specialCharacters && !numbers && !lowerCase && !upperCase) {
+    alert("You must choose at least one criteria!");
+    return;
+  }
+
+  // Variations of options
+  if (specialCharacters && numbers && lowerCase && upperCase) {
+
+  }
+
+
 };
 
 
