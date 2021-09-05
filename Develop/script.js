@@ -86,13 +86,6 @@ var upperCasedCharacters = [
   'Z',
 ];
 
-var criteria = {
-  specialCharacters = true,
-  numbers = true,
-  lowerCase = true,
-  upperCase = true,
-}
-
 
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
@@ -134,10 +127,33 @@ var generatePassword = function() {
     return;
   }
 
-  // Variations of options
-  if (specialCharacters && numbers && lowerCase && upperCase) {
 
+  
+  // Possible char values with 4 conditionals
+  var possibleCharacters = []
+  
+  if (specialCharacters) {
+    possibleCharacters.concat(specialCharacters);
+    console.log(possibleCharacters);
+  } 
+  
+  if (numbers) {
+    possibleCharacters.concat(numbers);
+    console.log(possibleCharacters);
   }
+  
+  if (lowerCase) {
+    possibleCharacters.concat(lowerCase);
+    console.log(possibleCharacters);
+  }
+  
+  if (upperCase) {
+    possibleCharacters.concat(upperCase);
+    console.log(possibleCharacters);
+  }
+
+
+  // Use a for loop until it reaches the number entered
 
 
 };
@@ -145,11 +161,10 @@ var generatePassword = function() {
 
 
 
-// Concatenate the variables using a new variable
 
 
 
-// Use a for loop until it reaches the number entered
+
 
 
 
