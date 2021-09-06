@@ -91,8 +91,8 @@ var upperCasedCharacters = [
 var specialCharacters = [];
 var numbers = [];
 var lowerCase = [];
-var upperCase =[];
-var characterOption = "";
+var upperCase = [];
+var characterOption = [];
 
 // Assigning generated password
 var genPassword = "";
@@ -142,44 +142,29 @@ var generatePassword = function() {
   var passwordTextArray = []
   
   if (specialCharacters) {
-    for (var i = 0; i < specialCharacterSet.length; i++) {
-      var randomise = Math.floor(Math.random() * specialCharacterSet.length);
-      var randomiseSpecialCharacters = specialCharacterSet[randomise];
-      passwordTextArray.push(randomiseSpecialCharacters);
-      console.log(passwordTextArray);
-    }
+    passwordTextArray = passwordTextArray.concat(specialCharacterSet)
   } 
   
   if (numbers) {
-    for (var i = 0; i < numericCharacters.length; i++) {
-      var randomise = Math.floor(Math.random() * numericCharacters.length);
-      var randomiseNumbers = numericCharacters[randomise];
-      passwordTextArray.push(randomiseNumbers);
-    }
+    passwordTextArray = passwordTextArray.concat(numericCharacters)
   }
   
   if (lowerCase) {
-    for (var i = 0; i < lowerCasedCharacters.length; i++) {
-      var randomise = Math.floor(Math.random() * lowerCasedCharacters.length);
-      var randomiseLowerCase = lowerCasedCharacters[randomise];
-      passwordTextArray.push(randomiseLowerCase);
-    }
+    passwordTextArray = passwordTextArray.concat(lowerCasedCharacters)
   }
   
   if (upperCase) {
-    for (var i = 0; i < upperCasedCharacters.length; i++) {
-      var randomise = Math.floor(Math.random() * upperCasedCharacters.length);
-      var randomiseUpperCase = upperCasedCharacters[randomise];
-      passwordTextArray.push(randomiseUpperCase);
-    }
+    passwordTextArray = passwordTextArray.concat(upperCasedCharacters)
   }
 
   // Use a for loop until it reaches the number entered & convert to string
-  passwordText = passwordTextArray.slice(0, characterOption);
-
-  // console.log(passwordText + passwordText.type)
+  for (var i = 0; i < characterOption; i++) {
+    genPassword = genPassword + passwordTextArray[Math.floor(Math.random() * passwordTextArray.length)];
+  }
+  console.log(genPassword);
+  
+  return genPassword;
 };
-
 
 
 
