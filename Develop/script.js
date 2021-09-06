@@ -1,5 +1,5 @@
 // Array of special characters to be included in password
-var specialCharacters = [
+var specialCharacterSet = [
   '@',
   '%',
   '+',
@@ -86,6 +86,15 @@ var upperCasedCharacters = [
   'Z',
 ];
 
+// Assigning Password options
+var specialCharacters = [];
+var numbers = [];
+var lowerCase = [];
+var upperCase =[];
+var characterOption = "";
+
+// Assigning generated password
+var genPassword = "";
 
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
@@ -105,7 +114,7 @@ generateBtn.addEventListener("click", writePassword);
 
 // Prompt user to input a number between 8 - 128
 var generatePassword = function() {
-  var characterOption = prompt("Between 8 to 128, how many characters do you want your password to be?");
+  characterOption = prompt("Between 8 to 128, how many characters do you want your password to be?");
   if (characterOption === "") {  // User leaves field blank, display alert and run function again
     alert("This field cannot be blank");
     generatePassword();
@@ -115,10 +124,10 @@ var generatePassword = function() {
   } else if (characterOption === null) {
       return; // Exit out of the function
   } else {     // Display and save prompt responses
-      var specialCharacters = confirm("Click OK to include special characters.");
-      var numbers = confirm("Click OK to include numbers.");
-      var lowerCase = confirm("Click OK to include lowercase letters.");
-      var upperCase = confirm("Click OK to include uppercase letters.");
+      specialCharacters = confirm("Click OK to include special characters.");
+      numbers = confirm("Click OK to include numbers.");
+      lowerCase = confirm("Click OK to include lowercase letters.");
+      upperCase = confirm("Click OK to include uppercase letters.");
   };
 
   // No criteria was chosen, display message and exit
@@ -130,32 +139,36 @@ var generatePassword = function() {
 
   
   // Possible char values with 4 conditionals
-  var possibleCharacters = []
+  var passwordText = []
   
   if (specialCharacters) {
-    possibleCharacters.concat(specialCharacters);
-    console.log(possibleCharacters);
+    passwordText.concat(specialCharacterSet);
+    console.log(passwordText);
   } 
   
   if (numbers) {
-    possibleCharacters.concat(numbers);
-    console.log(possibleCharacters);
+    passwordText.concat(numericCharacters);
+    console.log(passwordText);
   }
   
   if (lowerCase) {
-    possibleCharacters.concat(lowerCase);
-    console.log(possibleCharacters);
+    passwordText.concat(lowerCasedCharacters);
+    console.log(passwordText);
   }
   
   if (upperCase) {
-    possibleCharacters.concat(upperCase);
-    console.log(possibleCharacters);
+    passwordText.concat(upperCasedCharacters);
+    console.log(passwordText);
   }
 
 
-  // Use a for loop until it reaches the number entered
+  // Use a for loop until it reaches the number entered & convert to string
+  for (var i = 0; i < characterOption; i++) {
+    var randomise = passwordText[Math.floor(Math.random() * passwordText.length)];
+    passwordText.push(randomise);
+  }
 
-
+  console.log(passwordText + passwordText.type)
 };
 
 
@@ -168,4 +181,3 @@ var generatePassword = function() {
 
 
 
-// Covert variable to a string
