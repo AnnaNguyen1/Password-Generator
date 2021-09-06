@@ -24,6 +24,7 @@ var specialCharacterSet = [
   '_',
   '.',
 ];
+
 // Array of numeric characters to be included in password
 var numericCharacters = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
@@ -137,38 +138,46 @@ var generatePassword = function() {
   }
 
 
-  
-  // Possible char values with 4 conditionals
-  var passwordText = []
+  // Randomise arrays that are to be included
+  var passwordTextArray = []
   
   if (specialCharacters) {
-    passwordText.concat(specialCharacterSet);
-    console.log(passwordText);
+    for (var i = 0; i < specialCharacterSet.length; i++) {
+      var randomise = Math.floor(Math.random() * specialCharacterSet.length);
+      var randomiseSpecialCharacters = specialCharacterSet[randomise];
+      passwordTextArray.push(randomiseSpecialCharacters);
+      console.log(passwordTextArray);
+    }
   } 
   
   if (numbers) {
-    passwordText.concat(numericCharacters);
-    console.log(passwordText);
+    for (var i = 0; i < numericCharacters.length; i++) {
+      var randomise = Math.floor(Math.random() * numericCharacters.length);
+      var randomiseNumbers = numericCharacters[randomise];
+      passwordTextArray.push(randomiseNumbers);
+    }
   }
   
   if (lowerCase) {
-    passwordText.concat(lowerCasedCharacters);
-    console.log(passwordText);
+    for (var i = 0; i < lowerCasedCharacters.length; i++) {
+      var randomise = Math.floor(Math.random() * lowerCasedCharacters.length);
+      var randomiseLowerCase = lowerCasedCharacters[randomise];
+      passwordTextArray.push(randomiseLowerCase);
+    }
   }
   
   if (upperCase) {
-    passwordText.concat(upperCasedCharacters);
-    console.log(passwordText);
+    for (var i = 0; i < upperCasedCharacters.length; i++) {
+      var randomise = Math.floor(Math.random() * upperCasedCharacters.length);
+      var randomiseUpperCase = upperCasedCharacters[randomise];
+      passwordTextArray.push(randomiseUpperCase);
+    }
   }
-
 
   // Use a for loop until it reaches the number entered & convert to string
-  for (var i = 0; i < characterOption; i++) {
-    var randomise = passwordText[Math.floor(Math.random() * passwordText.length)];
-    passwordText.push(randomise);
-  }
+  passwordText = passwordTextArray.slice(0, characterOption);
 
-  console.log(passwordText + passwordText.type)
+  // console.log(passwordText + passwordText.type)
 };
 
 
