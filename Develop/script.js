@@ -87,14 +87,14 @@ var upperCasedCharacters = [
   'Z',
 ];
 
-// Assigning Password options
+// Assigning Password options as arrays
 var specialCharacters = [];
 var numbers = [];
 var lowerCase = [];
 var upperCase = [];
 var characterOption = [];
 
-// Assigning generated password
+// Assigning generated password as a string
 var genPassword = "";
 
 // Assignment Code
@@ -116,14 +116,20 @@ generateBtn.addEventListener("click", writePassword);
 // Prompt user to input a number between 8 - 128
 var generatePassword = function() {
   characterOption = prompt("Between 8 to 128, how many characters do you want your password to be?");
-  if (characterOption === "") {  // User leaves field blank, display alert and run function again
-    alert("This field cannot be blank");
+  
+  // "null" is returned when user cancels therefore need to kill the process.
+  if (characterOption === null) return;
+  
+  // User enters a string, so need to return as an integer
+  characterOption = parseInt(characterOption, 10)
+  
+  // Number.isNan = determine whether it is a number that is passed. If not then display alert.
+  if (Number.isNaN(characterOption)) {  
+    alert("A number needs to be entered and cannot be left blank!");
     generatePassword();
-  } else if (characterOption < 8 || characterOption > 128) {  //User enters number outside of range
+  } else if (characterOption < 8 || characterOption > 128) {  // User enters number outside of range
     characterOption = alert("Your value needs to be between 8 and 128!");
     generatePassword();
-  } else if (characterOption === null) {
-      return; // Exit out of the function
   } else {     // Display and save prompt responses
       specialCharacters = confirm("Click OK to include special characters.");
       numbers = confirm("Click OK to include numbers.");
@@ -136,7 +142,6 @@ var generatePassword = function() {
     alert("You must choose at least one criteria!");
     return;
   }
-
 
   // Randomise arrays that are to be included
   var passwordTextArray = []
@@ -157,12 +162,13 @@ var generatePassword = function() {
     passwordTextArray = passwordTextArray.concat(upperCasedCharacters)
   }
 
-  // Use a for loop until it reaches the number entered & convert to string
+  // Use a for loop until it reaches the number entered
   for (var i = 0; i < characterOption; i++) {
     genPassword = genPassword + passwordTextArray[Math.floor(Math.random() * passwordTextArray.length)];
   }
   console.log(genPassword);
   
+  // Return password that was generated
   return genPassword;
 };
 
